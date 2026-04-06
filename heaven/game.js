@@ -18,6 +18,17 @@ const btnAI = document.getElementById('btn-ai');
 cells.forEach(cell => cell.addEventListener('click', handleClick));
 restartBtn.addEventListener('click', restart);
 
+// ── Preview mode switcher ────────────────────────────────
+document.querySelectorAll('.preview-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.preview-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.body.classList.remove('preview-mobile', 'preview-tv');
+    const mode = btn.dataset.preview;
+    if (mode !== 'pc') document.body.classList.add(`preview-${mode}`);
+  });
+});
+
 btnHuman.addEventListener('click', () => {
   vsAI = false;
   btnHuman.classList.add('active');
